@@ -33,5 +33,22 @@ module Omiyageannaisan
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    # rails gで生成されるファイルの設定
+    config.generators do |g|
+      g.helper false # ヘルパーファイルを生成しない
+      g.test_framework :rspec, # rspecジェネレーター設定
+        fixtures: false,
+        routing_specs: false,
+        view_specs: false,
+        helper_specs: false,
+        controller_specs: true,
+        request_specs: false
+    end
+
+    # デフォルトのlocaleを日本語にする
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    # タイムゾーンを日本に
+    config.time_zone = 'Tokyo'
   end
 end
