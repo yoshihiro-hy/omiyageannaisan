@@ -16,7 +16,7 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+# gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -41,6 +41,10 @@ gem 'rails-i18n'
 gem 'enum_help'
 # スキーマ情報の表示
 gem 'annotate'
+
+# CSS,JSバンドラー
+gem 'cssbundling-rails'
+gem 'jsbundling-rails'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 

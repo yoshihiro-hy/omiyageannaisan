@@ -3,3 +3,5 @@ inherit_from: .rubocop_todo.yml
 Metrics/BlockLength:
   Exclude:
     - 'config/environments/development.rb'
+Style/Documentation:
+  Enabled: false
