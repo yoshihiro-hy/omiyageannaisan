@@ -7,13 +7,13 @@ class CreateRodgings < ActiveRecord::Migration[7.0]
       t.timestamp :shopping_day,   null: false
       t.string :address,           null: false
       t.string :photos
-      t.string :tel_number,        null: false
+      t.string :tel_number, null: false
       t.string :url
       t.float :latitude,           null: false
       t.float :longitude,          null: false
       t.references :user,          null: false, foreign_key: true
 
-      t.timestamps                 null: false
+      t.timestamps null: false
     end
   end
 end
