@@ -3,5 +3,12 @@ inherit_from: .rubocop_todo.yml
 Metrics/BlockLength:
   Exclude:
     - 'config/environments/development.rb'
+    - 'db/schema.rb'
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/**'
 Style/Documentation:
   Enabled: false

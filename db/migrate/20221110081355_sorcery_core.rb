@@ -8,7 +8,7 @@ class SorceryCore < ActiveRecord::Migration[7.0]
       t.string :avatar
       t.integer :role, default: 0
 
-      t.timestamps                null: false
+      t.timestamps null: false
     end
   end
 end
