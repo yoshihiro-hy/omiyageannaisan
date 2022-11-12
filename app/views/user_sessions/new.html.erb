@@ -1,5 +1,5 @@
 <div class="w-full max-w-sm my-24">
-  <h1 class="flex justify-center font-bold"><%= t '.title' %></h1>
+  <h1 class="flex justify-center font-bold mt-5"><%= t '.title' %></h1>
   <%= form_with url: login_path, local: true do |f| %>
     <div class="mb-2">
       <div class="pt-2 pb-1">
@@ -17,7 +17,7 @@
       <%= f.submit t('defaults.login'), class: 'btn btn-active' %>
     </div>
   <% end %>
-  <div class="mt-6 text-center hover:underline hover:text-gray-600 hover:decoration-gray-600">
+  <div class="mt-6 text-center hover:underline hover:text-gray-600 hover:decoration-gray-600 mb-5">
     <%= link_to t('.to_signup_page'), new_user_path %>
   </div>
 </div>
