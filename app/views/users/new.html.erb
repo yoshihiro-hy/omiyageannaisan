@@ -1,6 +1,7 @@
 <div class="w-full max-w-sm my-24">
   <h1 class="flex justify-center font-bold"><%= t '.title' %></h1>
   <%= form_with model: @user, local: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <div class="mb-2">
       <div class="pt-2 pb-1">
         <%= f.label :name %>
