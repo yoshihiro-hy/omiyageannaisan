@@ -1,7 +1,13 @@
 ja:
   defaults:
+    inquiry: 'お問合せ'
+    privacy_policy: 'プライバシーポリシー'
+    terms_of_service: '利用規約'
     register: '登録'
+    signup: '新規登録'
     login: 'ログイン'
+    logout: 'ログアウト'
+    mypage: 'マイページ'
   users:
     new:
       title: 'ユーザー登録'
