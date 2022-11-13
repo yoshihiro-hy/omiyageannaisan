@@ -1,5 +1,5 @@
 <header>
-  <div class="navbar bg-neutral text-base-100">
+  <div class="navbar bg-base-100">
     <div class="flex-1">
       <%= link_to "お土産案内さん", "/", class: "btn btn-ghost normal-case text-xl" %>
     </div>
@@ -11,16 +11,16 @@
       <div class="dropdown dropdown-end">
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
-            <img src="https://placeimg.com/80/80/people" />
+            <%= image_tag current_user.avatar.url %>
           </div>
         </label>
         <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52  text-neutral">
           <li>
             <a class="justify-between">
-              プーさん
+              <%= current_user.name %>
             </a>
           </li>
-          <li><%= link_to t('defaults.mypage'), "#" %></li>
+          <li><%= link_to (t'profiles.show.title'), profile_path %></li>
           <li><%= link_to t('defaults.logout'), logout_path, method: :delete %></li>
         </ul>
       </div>

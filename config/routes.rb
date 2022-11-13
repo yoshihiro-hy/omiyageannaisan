@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'staticpages#top'
 
   resources :users, only: [:new, :create]
+  resource :profile, only: %i[show edit update]
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

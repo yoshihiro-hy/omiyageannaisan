@@ -5,11 +5,14 @@ ja:
     terms_of_service: '利用規約'
     register: '登録'
     signup: '新規登録'
+    edit: '編集'
     login: 'ログイン'
     logout: 'ログアウト'
-    mypage: 'マイページ'
+    alignment_line: 'LINE連携'
     message:
       require_login: 'ログインしてください'
+      updated: '%{item}を更新しました'
+      not_updated: '%{item}の更新に失敗しました'
   users:
     new:
       title: 'ユーザー登録'
@@ -26,3 +29,8 @@ ja:
       fail: 'ログインに失敗しました'
     destroy:
       success: 'ログアウトが完了しました'
+  profiles:
+    show:
+      title: 'プロフィール'
+    edit:
+      title: 'プロフィール編集'

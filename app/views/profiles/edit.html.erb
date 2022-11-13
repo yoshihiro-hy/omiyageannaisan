@@ -1,8 +1,8 @@
 <div class="w-full max-w-sm my-24">
   <div class="card w-96 bg-base-100 shadow-xl mt-3 mb-3">
     <div class="card-body">
-      <h1 class="flex justify-center font-bold"><%= t '.title' %></h1>
-      <%= form_with model: @user, local: true do |f| %>
+      <h1 class="font-bold flex justify-center"><%= t '.title' %></h1>
+      <%= form_with model: @user, url: profile_path, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="mb-2">
           <div class="pt-2 pb-1">
@@ -18,23 +18,16 @@
         </div>
         <div class="mb-2">
           <div class="pt-2 pb-1">
-            <%= f.label :password, class: 'block mb-1' %>
+            <%= f.label :avatar, class: 'block mb-1' %>
           </div>
-          <%= f.password_field :password, class: 'w-full rounded border border-gray-200 p-2' %>
-        </div>
-        <div class="mb-2">
-          <div class="pt-2 pb-1">
-            <%= f.label :password_confirmation, class: 'block mb-1' %>
-          </div>
-          <%= f.password_field :password_confirmation, class: 'w-full rounded border border-gray-200 p-2' %>
+          <%= f.file_field :avatar %>
         </div>
         <div class="my-8 md:text-center">
-          <%= f.submit t('defaults.register'), class: 'btn btn-active' %>
+          <%= f.submit '更新', class: 'btn btn-active' %>
         </div>
       <% end %>
-      <div class="mt-6 text-center hover:underline hover:text-gray-600 hover:decoration-gray-600">
-        <%= link_to t('.to_login_page'), login_path %>
-      </div>
     </div>
   </div>
 </div>
+
+
