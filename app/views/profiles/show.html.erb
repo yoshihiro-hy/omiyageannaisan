@@ -1,2 +1,29 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div class="flex flex-col">
+  <div class="card w-96 bg-base-100 shadow-xl mt-5 mb-5">
+    <div class="card-body">
+      <h2 class="card-title"><%= current_user.name %></h2>
+      <p><%= current_user.email %></p>
+    </div>
+  </div>
+  <h1 class="text-base-100 flex justify-center text-xl">宿泊先一覧(イメージ)</h1>
+  <div class="card w-96 bg-base-100 shadow-xl mt-5 mb-5">
+    <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+    <div class="card-body">
+      <h2 class="card-title">アパホテル</h2>
+      <div class="card-actions justify-center">
+        <button class="btn btn-secondary">変更</button>
+        <button class="btn btn-primary">削除</button>
+      </div>
+    </div>
+  </div>
+  <div class="card w-96 bg-base-100 shadow-xl mt-5 mb-5">
+    <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+    <div class="card-body">
+      <h2 class="card-title">観光ホテル</h2>
+      <div class="card-actions justify-center">
+        <button class="btn btn-secondary">変更</button>
+        <button class="btn btn-primary">削除</button>
+      </div>
+    </div>
+  </div>
+</div>
