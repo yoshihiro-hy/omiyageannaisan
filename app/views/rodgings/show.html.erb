@@ -1,11 +1,13 @@
 <!-- Googleマップ表示エリア(地図を表示) -->
-<div class="card w-96 bg-base-100 shadow-xl mt-5 mb-5">
-  <div class="card-body">
-    <button class="text-xl"><%= @rodging.address %></button>
-    <div id="map" style="width:325px; height:300px" class="mt-3 mb-3"></div>
-    <div class="card-actions justify-center">
-      <button class="btn btn-secondary">変更</button>
-      <button class="btn btn-primary">削除</button>
+<div class="flex flex-col">  
+  <div class="card w-96 bg-base-100 shadow-xl mt-5 mb-5">
+    <div class="card-body">
+      <button class="text-xl"><%= @rodging.address %></button>
+      <div id="map" style="width:325px; height:300px" class="mt-3 mb-3"></div>
+      <div class="card-actions justify-center">
+        <button class="btn btn-secondary">変更</button>
+        <button class="btn btn-primary">削除</button>
+      </div>
     </div>
   </div>
 </div>
