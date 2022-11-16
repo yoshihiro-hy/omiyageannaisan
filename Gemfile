@@ -51,6 +51,8 @@ gem 'sorcery'
 gem 'carrierwave'
 # 環境変数設定用
 gem 'dotenv-rails'
+# 施設情報取得
+gem 'google_places'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
