@@ -10,9 +10,9 @@ class RodgingsController < ApplicationController
   end
 
   def create
-    @rodging = Rodging.new(rodging_params)
+    @rodging = current_user.rodgings.build(rodging_params)
     if @rodging.save
-      redirect_to rodging_path
+      redirect_to rodging_path(@rodging)
     else
       render :new
     end
@@ -21,17 +21,17 @@ class RodgingsController < ApplicationController
   def show; end
 
   def destroy
-    @place.destroy
+    @rodging.destroy
     redirect_to rodgings_path
   end
 
   private
 
   def set_rodging
-    @rodging = Rodging.find(params[:id])
+    @rodging = current_user.rodgings.find(params[:id])
   end
 
   def rodging_params
-    params.require(:rodging).permit(:name, :latitude, :longitude, :address)
+    params.require(:rodging).permit(:latitude, :longitude, :address)
   end
 end

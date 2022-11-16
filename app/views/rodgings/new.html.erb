@@ -2,15 +2,15 @@
   <div class="card w-96 bg-base-100 shadow-xl mt-3 mb-3">
     <div class="card-body">
       <h1 class="flex justify-center font-bold mt-5">宿泊先作成</h1>
-      <%= form_with model: @rodging,local: true do |f| %>
+      <%= form_with model: @rodging, local: true do |f| %>
         <div class="mb-2">
           <div class="pt-2 pb-1">
             <%= f.label :address, class: 'block mb-1' %>
           </div>
-          <%= f.text_field :address, class: 'w-full rounded border border-gray-200 p-2' %>
+          <%= f.search_field :address, autofocus: true,placeholder: "宿泊先名を入力してください", class: 'w-full rounded border border-gray-200 p-2' %>
         </div>
         <div class="my-8 md:text-center">
-          <%= f.submit "保存する", class: 'btn btn-active' %>
+          <%= f.submit '保存する', class: 'btn btn-active' %>
         </div>
       <% end %>
     </div>

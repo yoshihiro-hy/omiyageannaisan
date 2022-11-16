@@ -53,6 +53,8 @@ gem 'carrierwave'
 gem 'dotenv-rails'
 # 施設情報取得
 gem 'google_places'
+# 入力した住所から緯度と経度を取得
+gem "geocoder"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
