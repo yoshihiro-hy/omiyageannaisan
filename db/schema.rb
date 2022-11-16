@@ -15,16 +15,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_022615) do
   enable_extension "plpgsql"
 
   create_table "rodgings", force: :cascade do |t|
-    t.string "name", limit: 255, null: false
-    t.datetime "start_time", precision: nil, null: false
-    t.datetime "end_time", precision: nil, null: false
-    t.datetime "shopping_day", precision: nil, null: false
+    t.datetime "start_time", precision: nil
+    t.datetime "end_time", precision: nil
+    t.datetime "shopping_day", precision: nil
     t.string "address", null: false
     t.string "photos"
-    t.string "tel_number", null: false
+    t.string "tel_number"
     t.string "url"
-    t.float "latitude", null: false
-    t.float "longitude", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,13 +31,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_022615) do
   end
 
   create_table "shops", force: :cascade do |t|
-    t.string "name", limit: 255, null: false
     t.string "address", null: false
     t.string "photos"
-    t.string "tel_number", null: false
+    t.string "tel_number"
     t.string "url"
-    t.float "latitude", null: false
-    t.float "longitude", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.bigint "rodging_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
