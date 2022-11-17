@@ -34,3 +34,6 @@ ja:
       title: 'プロフィール'
     edit:
       title: 'プロフィール編集'
+  rodgings:
+    new:
+      title: '宿泊先作成'
