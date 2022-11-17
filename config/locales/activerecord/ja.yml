@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: 'ユーザー'
+      rodging: '宿泊先'
     attributes:
       user:
         name: '名前'
@@ -9,3 +10,8 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         avatar: 'アイコン'
+      rodging:
+        address: '宿泊先名'
+        start_time: '旅行日程'
+        end_time: '旅行最終日'
+        shopping_day: 'お土産購入日'

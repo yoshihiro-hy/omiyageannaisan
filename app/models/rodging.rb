@@ -5,5 +5,8 @@ class Rodging < ApplicationRecord
 
   with_options presence: true do
     validates :address
+    validates :start_time
+    validates :end_time
+    validates :shopping_day
   end
 end
