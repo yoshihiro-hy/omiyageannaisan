@@ -32,6 +32,6 @@ class RodgingsController < ApplicationController
   end
 
   def rodging_params
-    params.require(:rodging).permit(:latitude, :longitude, :address)
+    params.require(:rodging).permit(:latitude, :longitude, :address, :start_time, :end_time, :shopping_day)
   end
 end
