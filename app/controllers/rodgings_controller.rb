@@ -12,7 +12,7 @@ class RodgingsController < ApplicationController
   def create
     @rodging = current_user.rodgings.build(rodging_params)
     if @rodging.save
-      redirect_to rodging_path(@rodging)
+      redirect_to search_rodging_shops_path(@rodging)
     else
       render :new
     end
