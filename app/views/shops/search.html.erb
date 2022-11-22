@@ -1,0 +1,72 @@
+<div class="flex flex-col">  
+  <div class="card w-96 bg-base-100 shadow-xl mt-5 mb-5">
+    <div class="card-body">
+      <button class="text-xl"><%= @rodging.address %>周辺で検索</button>
+      <div><%= render 'rodgings/rodging_map', rodging: @rodging %></div>
+      <input type="text" placeholder="お菓子など" id="search" class="input w-full max-w-xs bg-white" />
+      <button class='btn btn-active' onClick="SearchGo()">検索</button>
+      <div class="text-center">
+        <h1 class="font-bold text-4xl">↓</h1>
+      </div>
+      <%= render 'form', shop: @shop %>
+    </div>
+  </div>
+</div>
+ 
+<script>
+  function SearchGo() {
+    let initPos = {lat: <%= @rodging.latitude || 0 %> , lng: <%= @rodging.longitude || 0 %> };
+    let mapOptions = {
+        center : initPos,
+        zoom: 0,
+        mapTypeId : google.maps.MapTypeId.ROADMAP
+    };
+    // #map要素にMapクラスの新しいインスタンスを作成
+    myMap = new google.maps.Map(document.getElementById("map"), mapOptions);
+    service = new google.maps.places.PlacesService(myMap);
+    // input要素に入力されたキーワードを検索の条件に設定
+    let myword = document.getElementById("search");
+    let request = {
+        query: myword.value,
+        location: myMap.getCenter()
+    };
+    service.textSearch(request, result_search);
+  }
+  
+  // 検索の結果を受け取る
+  function result_search(results, status) {
+      let bounds = new google.maps.LatLngBounds();
+      for(let i = 0; i < results.length; i++){
+          createMarker({
+              position : results[i].geometry.location,
+              text : results[i].name,
+              map : myMap
+          });
+          bounds.extend(results[i].geometry.location);
+      }
+      myMap.fitBounds(bounds);
+  }
+  
+  // 該当する位置にマーカーを表示
+  function createMarker(options) {
+      // マップ情報を保持しているmyMapオブジェクトを指定
+      options.map = myMap;
+      // Markcrクラスのオブジェクトmarkerを作成
+      let marker = new google.maps.Marker(options);
+      // 各施設の吹き出し(情報ウインドウ)に表示させる処理
+      let infoWnd = new google.maps.InfoWindow();
+      infoWnd.setContent(options.text);
+      // addListenerメソッドを使ってイベントリスナーを登録
+      google.maps.event.addListener(marker, 'click', function(){
+          infoWnd.open(myMap, marker);
+      });
+      return marker;
+  }
+  
+  // ページ読み込み完了後、Googleマップを表示
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap">
+</script>

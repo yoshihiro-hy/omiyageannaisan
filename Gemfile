@@ -55,6 +55,8 @@ gem 'dotenv-rails'
 gem 'google_places'
 # 入力した住所から緯度と経度を取得
 gem "geocoder"
+# Railsで定義した変数をJavaScriptで使用できるようにする
+gem 'gon'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 

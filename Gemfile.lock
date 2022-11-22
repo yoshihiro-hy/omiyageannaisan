@@ -134,6 +134,11 @@ GEM
     geocoder (1.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    gon (6.4.0)
+      actionpack (>= 3.0.20)
+      i18n (>= 0.7)
+      multi_json
+      request_store (>= 1.0)
     google_places (2.0.0)
       httparty (>= 0.13.1)
     hashie (5.0.0)
@@ -171,6 +176,7 @@ GEM
     mini_portile2 (2.8.0)
     minitest (5.16.3)
     msgpack (1.6.0)
+    multi_json (1.15.0)
     multi_xml (0.6.0)
     net-imap (0.3.1)
       net-protocol
@@ -243,6 +249,8 @@ GEM
     regexp_parser (2.6.0)
     reline (0.3.1)
       io-console (~> 0.5)
+    request_store (1.5.1)
+      rack (>= 1.4)
     rexml (3.2.5)
     rspec-core (3.12.0)
       rspec-support (~> 3.12.0)
@@ -353,6 +361,7 @@ DEPENDENCIES
   enum_help
   factory_bot_rails
   geocoder
+  gon
   google_places
   jbuilder
   jsbundling-rails
