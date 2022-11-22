@@ -1,6 +1,10 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: %i[show destroy]
-  before_action :set_rodging, only: %i[create search]
+  before_action :set_rodging, only: %i[index create search]
+
+  def index
+    @shops = @rodging.shops.all
+  end
    
   def new; end
 
@@ -8,7 +12,7 @@ class ShopsController < ApplicationController
     @shop = @rodging.shops.build(shop_params)
     
     if @shop.save
-      redirect_to root_path
+      redirect_to rodging_shops_path
     else
       render :search
     end

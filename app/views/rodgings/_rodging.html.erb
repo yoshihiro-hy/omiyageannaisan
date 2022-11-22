@@ -1,8 +1,7 @@
-<!-- Googleマップ表示エリア(地図を表示) -->
 <div>  
   <div class="card w-96 bg-base-100 font-bold shadow-xl mt-5 mb-5">
     <div class="card-body">
-      <button class="text-xl"><%= rodging.address %></button>
+      <%= link_to rodging.address, rodging_shops_path(rodging.id), class: "text-xl text-center" %>
       <div><%= render 'rodging_map', rodging: rodging %></div>
       <div><%= Rodging.human_attribute_name(:start_time)%></div>
       <div class='flex justify-start'>
