@@ -1,8 +1,7 @@
 class Shop < ApplicationRecord
+  geocoded_by :address
+  after_validation :geocode
   belongs_to :rodging
 
-  with_options presence: true do
-    validates :name
-    validates :address
-  end
+  validates :address, presence: true
 end

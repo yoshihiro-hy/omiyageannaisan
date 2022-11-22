@@ -5,6 +5,10 @@
       <div><%= render 'rodgings/rodging_map', rodging: @rodging %></div>
       <input type="text" placeholder="お菓子など" id="search" class="input w-full max-w-xs bg-white" />
       <button class='btn btn-active' onClick="SearchGo()">検索</button>
+      <div class="text-center">
+        <h1 class="font-bold text-4xl">↓</h1>
+      </div>
+      <%= render 'form', shop: @shop %>
     </div>
   </div>
 </div>
@@ -24,7 +28,6 @@
     let myword = document.getElementById("search");
     let request = {
         query: myword.value,
-        radius: 1000,
         location: myMap.getCenter()
     };
     service.textSearch(request, result_search);

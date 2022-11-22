@@ -1,16 +1,16 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: %i[show destroy]
-  before_action :set_rodging, only: %i[new search]
+  before_action :set_rodging, only: %i[create search]
    
   def new; end
 
   def create
-    @shop = Shop.new(shop_params)
+    @shop = @rodging.shops.build(shop_params)
     
     if @shop.save
-      redirect_to rodging_path
+      redirect_to root_path
     else
-      render :new
+      render :search
     end
   end
 
@@ -21,7 +21,9 @@ class ShopsController < ApplicationController
     redirect_to rodging_path
   end
 
-  def search; end
+  def search
+    @shop = Shop.new
+  end
 
   private
 
@@ -34,6 +36,6 @@ class ShopsController < ApplicationController
   end
   
   def shop_params
-    params.require(:shop).permit(:latitude, :longitude, :address)
+    params.require(:shop).permit(:latitude, :longitude, :address).merge(rodging_id: params[:rodging_id])
   end
 end
