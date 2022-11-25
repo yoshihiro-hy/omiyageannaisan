@@ -12,8 +12,9 @@ class RodgingsController < ApplicationController
   def create
     @rodging = current_user.rodgings.build(rodging_params)
     if @rodging.save
-      redirect_to search_rodging_shops_path(@rodging)
+      redirect_to search_rodging_shops_path(@rodging), success: t('.success')
     else
+      flash.now[:danger] = t('.fail')
       render :new
     end
   end
@@ -22,7 +23,7 @@ class RodgingsController < ApplicationController
 
   def destroy
     @rodging.destroy
-    redirect_to rodgings_path
+    redirect_to rodgings_path, success: t('.success')
   end
 
   private

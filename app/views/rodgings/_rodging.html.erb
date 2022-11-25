@@ -1,20 +1,47 @@
-<div>  
-  <div class="card w-96 bg-base-100 font-bold shadow-xl mt-5 mb-5">
-    <div class="card-body">
-      <%= link_to rodging.address, rodging_shops_path(rodging.id), class: "text-xl text-center" %>
-      <div><%= render 'rodging_map', rodging: rodging %></div>
-      <div><%= Rodging.human_attribute_name(:start_time)%></div>
-      <div class='flex justify-start'>
-        <div class='mr-3 mb-3'><%= rodging.start_time.strftime('%Y年%m/%d') %></div>
-        <div>〜</div>
-        <div class='ml-3'><%= rodging.end_time.strftime('%Y年%m/%d') %></div>
-      </div>
-      <div><%= Rodging.human_attribute_name(:shopping_day)%></div>
-      <div><%= rodging.shopping_day.strftime('%Y年%m/%d') %></div>
-      <div class="card-actions justify-center">
-        <button class="btn btn-secondary"><%= (t'defaults.change') %></button>
-        <button class="btn btn-primary"><%= (t'defaults.delete')%></button>
-      </div>
+<div class="card w-96 bg-base-100 font-bold shadow-xl mt-5 mb-5">
+  <div class="card-body">
+    <%= link_to rodging.address, rodging_shops_path(rodging.id), class: "text-xl text-center" %>
+    <div id='map-<%= rodging.id %>' style="width:325px; height:300px" class="mt-3 mb-3"></div>
+    <div><%= Rodging.human_attribute_name(:start_time)%></div>
+    <div class='flex justify-start'>
+      <div class='mr-3 mb-3'><%= rodging.start_time.strftime('%Y年%m/%d') %></div>
+      <div>〜</div>
+      <div class='ml-3'><%= rodging.end_time.strftime('%Y年%m/%d') %></div>
+    </div>
+    <div><%= Rodging.human_attribute_name(:shopping_day)%></div>
+    <div><%= rodging.shopping_day.strftime('%Y年%m/%d') %></div>
+    <div class="card-actions justify-center">
+      <button class="btn btn-secondary"><%= (t'defaults.change') %></button>
+      <%= button_to (t'defaults.delete'), rodging_path(rodging), method: :delete, class:"btn btn-primary" %>
     </div>
   </div>
 </div>
+
+<!-- Googleマップ表示用の Javascript -->
+<script>
+  function initMap(){
+    // 地図の位置情報(緯度・経度)を取得
+    let mapPosition = {lat: <%= rodging.latitude %> , lng: <%= rodging.longitude %> };
+    let map = new google.maps.Map(document.getElementById('map-<%= rodging.id %>'), {
+      zoom: 15,
+      center: mapPosition
+    });
+    let transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    let contentString = '【施設名】<%= rodging.address %>';
+    let infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    let marker = new google.maps.Marker({
+      position: mapPosition,
+      map: map,
+      title: contentString
+    });
+
+    marker.addListener('click', function(){
+      infowindow.open(map, marker);
+    });
+  }
+</script>

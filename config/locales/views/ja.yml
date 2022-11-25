@@ -40,5 +40,16 @@ ja:
   rodgings:
     new:
       title: '宿泊先作成'
+    create:
+      success: '宿泊先を作成しました'
+      fail: '宿泊先の作成に失敗しました'
     index:
       title: '宿泊先一覧'
+    destroy:
+      success: '宿泊先を削除しました'
+  shops:
+    create:
+      success: '店舗を保存しました'
+      fail: '店舗の保存に失敗しました'
+    destroy:
+      success: '店舗を削除しました'    

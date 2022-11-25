@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: %i[show destroy]
+  before_action :set_shop, only: %i[destroy]
   before_action :set_rodging, only: %i[index create search]
 
   def index
@@ -22,7 +22,7 @@ class ShopsController < ApplicationController
 
   def destroy
     @shop.destroy
-    redirect_to rodging_path
+    redirect_to rodging_shops_path
   end
 
   def search
@@ -36,7 +36,8 @@ class ShopsController < ApplicationController
   end
 
   def set_shop
-    @shop = current_user.rodgings.shops.find(params[:id])
+    @rodging = current_user.rodgings.find(params[:rodging_id])
+    @shop = @rodging.shops.find(params[:id])
   end
   
   def shop_params
