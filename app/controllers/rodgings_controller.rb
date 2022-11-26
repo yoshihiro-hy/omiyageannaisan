@@ -1,5 +1,5 @@
 class RodgingsController < ApplicationController
-  before_action :set_rodging, only: %i[show destroy]
+  before_action :set_rodging, only: %i[edit update destroy]
 
   def index
     @rodgings = current_user.rodgings.all
@@ -19,10 +19,18 @@ class RodgingsController < ApplicationController
     end
   end
 
-  def show; end
+  def edit; end
+
+  def update
+    if @rodging.update(rodging_params)
+      redirect_to rodgings_path
+    else
+      reder :edit
+    end
+  end
 
   def destroy
-    @rodging.destroy
+    @rodging.destroy!
     redirect_to rodgings_path, success: t('.success')
   end
 

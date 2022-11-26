@@ -11,7 +11,7 @@
     <div><%= Rodging.human_attribute_name(:shopping_day)%></div>
     <div><%= rodging.shopping_day.strftime('%Y年%m/%d') %></div>
     <div class="card-actions justify-center">
-      <button class="btn btn-secondary"><%= (t'defaults.change') %></button>
+      <%= link_to (t'defaults.change'), edit_rodging_path(rodging), class:"btn btn-secondary"  %>
       <%= button_to (t'defaults.delete'), rodging_path(rodging), method: :delete, class:"btn btn-primary" %>
     </div>
   </div>

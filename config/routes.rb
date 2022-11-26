@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[new create]
   resource :profile, only: %i[show edit update]
-  resources :rodgings, only: %i[new create index show destroy] do
+  resources :rodgings, only: %i[index new create edit update destroy] do
     resources :shops, only: %i[index new create edit update destroy] do
       collection do
         get 'search'

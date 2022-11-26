@@ -29,7 +29,7 @@ class ShopsController < ApplicationController
   end
 
   def destroy
-    @shop.destroy
+    @shop.destroy!
     redirect_to rodging_shops_path
   end
 
