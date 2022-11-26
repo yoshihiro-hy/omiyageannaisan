@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: %i[destroy]
-  before_action :set_rodging, only: %i[index create search]
+  before_action :set_shop, only: %i[edit update destroy]
+  before_action :set_rodging, only: %i[create edit index search]
 
   def index
     @shops = @rodging.shops.all
@@ -18,7 +18,15 @@ class ShopsController < ApplicationController
     end
   end
 
-  def show; end
+  def edit; end
+
+  def update
+    if @shop.update(shop_params)
+      redirect_to rodging_shops_path
+    else
+      reder :edit
+    end
+  end
 
   def destroy
     @shop.destroy

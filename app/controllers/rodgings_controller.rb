@@ -1,5 +1,5 @@
 class RodgingsController < ApplicationController
-  before_action :set_rodging, only: %i[destroy show]
+  before_action :set_rodging, only: %i[show destroy]
 
   def index
     @rodgings = current_user.rodgings.all
