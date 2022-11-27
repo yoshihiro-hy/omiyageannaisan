@@ -1,5 +1,5 @@
 <div class="flex flex-col">
-  <%= render 'search_form', shop: @shop, rodging: @rodging %>
+  <%= render 'search_form', {shop: @shop, rodging: @rodging} %>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap"></script>

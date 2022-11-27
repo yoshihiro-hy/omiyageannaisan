@@ -3,7 +3,7 @@
     <h1 class='text-center'><%= shop.address %></h1>
     <div><%= render 'shop_map', shop: shop %></div>
     <div class="card-actions justify-center">
-      <%= link_to (t'defaults.change'), edit_rodging_shop_path(id: shop), class:"btn btn-secondary"  %>
+      <%= link_to (t'defaults.change'), edit_rodging_shop_path(id: shop),method: :post, class:"btn btn-secondary"  %>
       <%= button_to (t'defaults.delete'), rodging_shop_path(id: shop), method: :delete, class:"btn btn-primary" %>
     </div>
   </div>

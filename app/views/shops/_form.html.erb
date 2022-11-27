@@ -1,9 +1,0 @@
-<%= form_with model: shop, url: rodging_shops_path, local: true do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="mb-2">
-    <%= f.text_field :address, placeholder: "店舗名を入力してください", class: 'w-full rounded border border-gray-200 p-2' %>
-  </div>
-  <div class="text-center">
-    <%= f.submit (t'defaults.keep'), class: 'btn btn-active' %>
-  </div>
-<% end %>

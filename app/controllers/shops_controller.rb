@@ -6,8 +6,6 @@ class ShopsController < ApplicationController
     @shops = @rodging.shops.all
   end
 
-  def new; end
-
   def create
     @shop = @rodging.shops.build(shop_params)
 
@@ -44,8 +42,8 @@ class ShopsController < ApplicationController
   end
 
   def set_shop
-    @rodging = current_user.rodgings.find(params[:rodging_id])
-    @shop = @rodging.shops.find(params[:id])
+    rodging = current_user.rodgings.find(params[:rodging_id])
+    @shop = rodging.shops.find(params[:id])
   end
 
   def shop_params

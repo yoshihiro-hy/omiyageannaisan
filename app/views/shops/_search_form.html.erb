@@ -7,7 +7,15 @@
     <div class="text-center">
       <h1 class="font-bold text-4xl">↓</h1>
     </div>
-    <%= render 'form', shop: shop %>
+    <%= form_with model: [rodging, shop], local: true do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="mb-2">
+        <%= f.text_field :address, placeholder: "店舗名を入力してください", class: 'w-full rounded border border-gray-200 p-2' %>
+      </div>
+      <div class="text-center">
+        <%= f.submit (t'defaults.keep'), class: 'btn btn-active' %>
+      </div>
+    <% end %>
   </div>
 </div>
 
