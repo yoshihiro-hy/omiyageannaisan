@@ -5,12 +5,12 @@ class ShopsController < ApplicationController
   def index
     @shops = @rodging.shops.all
   end
-   
+
   def new; end
 
   def create
     @shop = @rodging.shops.build(shop_params)
-    
+
     if @shop.save
       redirect_to rodging_shops_path
     else
@@ -47,7 +47,7 @@ class ShopsController < ApplicationController
     @rodging = current_user.rodgings.find(params[:rodging_id])
     @shop = @rodging.shops.find(params[:id])
   end
-  
+
   def shop_params
     params.require(:shop).permit(:latitude, :longitude, :address).merge(rodging_id: params[:rodging_id])
   end
