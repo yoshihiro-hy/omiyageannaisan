@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: %i[edit update destroy]
-  before_action :set_rodging, only: %i[create edit index search]
+  before_action :set_rodging, only: %i[create edit update index search]
 
   def index
     @shops = @rodging.shops.all
@@ -10,8 +10,9 @@ class ShopsController < ApplicationController
     @shop = @rodging.shops.build(shop_params)
 
     if @shop.save
-      redirect_to rodging_shops_path
+      redirect_to rodging_shops_path, success: t('defaults.message.addition', item: Shop.model_name.human)
     else
+      flash.now[:danger] = t('defaults.message.not_addition', item: Shop.model_name.human)
       render :search
     end
   end
@@ -20,15 +21,16 @@ class ShopsController < ApplicationController
 
   def update
     if @shop.update(shop_params)
-      redirect_to rodging_shops_path
+      redirect_to rodging_shops_path, success: t('defaults.message.updated', item: Shop.model_name.human)
     else
-      reder :edit
+      flash.now[:danger] = t('defaults.message.not_updated', item: Shop.model_name.human)
+      render :edit
     end
   end
 
   def destroy
     @shop.destroy!
-    redirect_to rodging_shops_path
+    redirect_to rodging_shops_path, success: t('defaults.message.deleted', item: Shop.model_name.human)
   end
 
   def search

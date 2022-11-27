@@ -16,6 +16,11 @@ ja:
       require_login: 'ログインしてください'
       updated: '%{item}を更新しました'
       not_updated: '%{item}の更新に失敗しました'
+      created: '%{item}を作成しました'
+      not_created: '%{item}の作成に失敗しました'
+      deleted: '%{item}を削除しました'
+      addition: '%{item}を追加しました'
+      not_addition: '%{item}の追加に失敗しました'
   users:
     new:
       title: 'ユーザー登録'
@@ -40,16 +45,14 @@ ja:
   rodgings:
     new:
       title: '宿泊先作成'
-    create:
-      success: '宿泊先を作成しました'
-      fail: '宿泊先の作成に失敗しました'
     index:
       title: '宿泊先一覧'
-    destroy:
-      success: '宿泊先を削除しました'
+    edit:
+      title: '宿泊先編集'
   shops:
-    create:
-      success: '店舗を保存しました'
-      fail: '店舗の保存に失敗しました'
-    destroy:
-      success: '店舗を削除しました'    
+    search:
+      title: '周辺店舗検索'
+    index:
+      title: '店舗一覧'
+    edit:
+      title: '店舗変更'

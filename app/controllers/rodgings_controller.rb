@@ -12,9 +12,9 @@ class RodgingsController < ApplicationController
   def create
     @rodging = current_user.rodgings.build(rodging_params)
     if @rodging.save
-      redirect_to search_rodging_shops_path(@rodging), success: t('.success')
+      redirect_to search_rodging_shops_path(@rodging), success: t('defaults.message.created', item: Rodging.model_name.human)
     else
-      flash.now[:danger] = t('.fail')
+      flash.now[:danger] = t('defaults.message.not_created', item: Rodging.model_name.human)
       render :new
     end
   end
@@ -23,15 +23,16 @@ class RodgingsController < ApplicationController
 
   def update
     if @rodging.update(rodging_params)
-      redirect_to rodgings_path
+      redirect_to rodgings_path, success: t('defaults.message.updated', item: Rodging.model_name.human)
     else
-      reder :edit
+      flash.now[:danger] = t('defaults.message.not_updated', item: Rodging.model_name.human)
+      render :edit
     end
   end
 
   def destroy
     @rodging.destroy!
-    redirect_to rodgings_path, success: t('.success')
+    redirect_to rodgings_path, success: t('defaults.message.deleted', item: Rodging.model_name.human)
   end
 
   private
