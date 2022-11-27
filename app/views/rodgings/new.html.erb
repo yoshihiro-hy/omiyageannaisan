@@ -1,3 +1,9 @@
+<% content_for(:title, t('.title')) %>
 <div class="w-full max-w-sm my-24">
-  <%= render 'form', rodging: @rodging %>
+  <div class="card w-96 bg-base-100 shadow-xl mt-3 mb-3">
+    <div class="card-body">
+      <h1 class="flex justify-center font-bold mt-5"><%= t '.title'%></h1>
+      <%= render 'form', rodging: @rodging %>
+    </div>
+  </div>
 </div>
