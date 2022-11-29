@@ -16,6 +16,11 @@ ja:
       require_login: 'ログインしてください'
       updated: '%{item}を更新しました'
       not_updated: '%{item}の更新に失敗しました'
+      created: '%{item}を作成しました'
+      not_created: '%{item}の作成に失敗しました'
+      deleted: '%{item}を削除しました'
+      addition: '%{item}を追加しました'
+      not_addition: '%{item}の追加に失敗しました'
   users:
     new:
       title: 'ユーザー登録'
@@ -39,6 +44,15 @@ ja:
       title: 'プロフィール編集'
   rodgings:
     new:
-      title: '宿泊先作成'
+      title: '宿泊先登録'
     index:
       title: '宿泊先一覧'
+    edit:
+      title: '宿泊先編集'
+  shops:
+    search:
+      title: '周辺店舗検索'
+    index:
+      title: '店舗一覧'
+    edit:
+      title: '店舗変更'

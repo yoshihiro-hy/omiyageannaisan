@@ -1,24 +1,36 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: %i[show destroy]
-  before_action :set_rodging, only: %i[create search]
-   
-  def new; end
+  before_action :set_shop, only: %i[edit update destroy]
+  before_action :set_rodging, only: %i[create edit update index search]
+
+  def index
+    @shops = @rodging.shops.all
+  end
 
   def create
     @shop = @rodging.shops.build(shop_params)
-    
+
     if @shop.save
-      redirect_to root_path
+      redirect_to rodging_shops_path, success: t('defaults.message.addition', item: Shop.model_name.human)
     else
+      flash.now[:danger] = t('defaults.message.not_addition', item: Shop.model_name.human)
       render :search
     end
   end
 
-  def show; end
+  def edit; end
+
+  def update
+    if @shop.update(shop_params)
+      redirect_to rodging_shops_path, success: t('defaults.message.updated', item: Shop.model_name.human)
+    else
+      flash.now[:danger] = t('defaults.message.not_updated', item: Shop.model_name.human)
+      render :edit
+    end
+  end
 
   def destroy
-    @shop.destroy
-    redirect_to rodging_path
+    @shop.destroy!
+    redirect_to rodging_shops_path, success: t('defaults.message.deleted', item: Shop.model_name.human)
   end
 
   def search
@@ -32,9 +44,10 @@ class ShopsController < ApplicationController
   end
 
   def set_shop
-    @shop = current_user.rodgings.shops.find(params[:id])
+    rodging = current_user.rodgings.find(params[:rodging_id])
+    @shop = rodging.shops.find(params[:id])
   end
-  
+
   def shop_params
     params.require(:shop).permit(:latitude, :longitude, :address).merge(rodging_id: params[:rodging_id])
   end

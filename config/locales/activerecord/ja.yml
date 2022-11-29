@@ -3,6 +3,7 @@ ja:
     models:
       user: 'ユーザー'
       rodging: '宿泊先'
+      shop: '店舗'
     attributes:
       user:
         name: '名前'
@@ -15,3 +16,5 @@ ja:
         start_time: '旅行日程'
         end_time: '旅行最終日'
         shopping_day: 'お土産購入日'
+      shop:
+        address: '店舗名'

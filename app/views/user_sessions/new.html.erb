@@ -1,3 +1,4 @@
+<% content_for(:title, t('.title')) %>
 <div class="w-full max-w-sm my-24">
   <div class="card w-96 bg-base-100 shadow-xl mt-3 mb-3">
     <div class="card-body">
@@ -19,7 +20,7 @@
           <%= f.submit t('defaults.login'), class: 'btn btn-active' %>
         </div>
       <% end %>
-      <div class="mt-6 text-center hover:underline hover:text-gray-600 hover:decoration-gray-600 mb-5">
+      <div class="mt-6 text-center">
         <%= link_to t('.to_signup_page'), new_user_path %>
       </div>
     </div>

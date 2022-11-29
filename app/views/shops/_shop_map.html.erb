@@ -1,18 +1,18 @@
-<div id="map" style="width:325px; height:300px" class="mt-3 mb-3"></div>
+<div id="map-<%= shop.id %>" style="width:325px; height:300px" class="mt-3 mb-3"></div>
 
 <!-- Googleマップ表示用の Javascript -->
 <script>
   function initMap(){
     // 地図の位置情報(緯度・経度)を取得
-    let mapPosition = {lat: <%= rodging.latitude || 0 %> , lng: <%= rodging.longitude || 0 %> };
-    let map = new google.maps.Map(document.getElementById('map'), {
+    let mapPosition = {lat: <%= shop.latitude || 0 %> , lng: <%= shop.longitude || 0 %> };
+    let map = new google.maps.Map(document.getElementById('map-<%= shop.id %>'), {
       zoom: 15,
       center: mapPosition
     });
     let transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    let contentString = '【施設名】<%= rodging.address %>';
+    let contentString = '【店舗名】<%= shop.address %>';
     let infowindow = new google.maps.InfoWindow({
       content: contentString
     });
@@ -29,4 +29,3 @@
   }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
