@@ -44,7 +44,7 @@ ja:
       title: 'プロフィール編集'
   rodgings:
     new:
-      title: '宿泊先作成'
+      title: '宿泊先登録'
     index:
       title: '宿泊先一覧'
     edit:
