@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: %i[edit update destroy]
-  before_action :set_rodging, only: %i[create edit update index search]
+  before_action :set_rodging, only: %i[create edit update index search directions]
 
   def index
     @shops = @rodging.shops.all
@@ -35,6 +35,11 @@ class ShopsController < ApplicationController
 
   def search
     @shop = Shop.new
+  end
+
+  def directions
+    @shops = @rodging.shops.all
+    gon.shops = @shops
   end
 
   private

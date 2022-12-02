@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :shops, only: %i[index create edit update destroy] do
       collection do
         get 'search'
+        get 'directions'
       end
     end
   end

@@ -1,7 +1,9 @@
 <% content_for(:title, t('.title')) %>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>"></script>
 <div class="grid gap-8 mt-5 mb-5 md:grid-cols-2 lg:grid-cols-3">
-  <%= link_to '店舗を追加する', search_rodging_shops_path, class:"btn btn-lg w-96 font-bold shadow-xl h-[476px]" %>
+  <div class='ml-5'>
+    <%= link_to '店舗を追加する', search_rodging_shops_path, class:"btn btn-lg w-96 font-bold shadow-xl h-[234px]" %>
+    <%= link_to 'まとめて道案内', directions_rodging_shops_path, class:"btn btn-lg w-96 font-bold shadow-xl h-[234px] mt-2" %>
+  </div>
   <%= render @shops %>
 </div>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

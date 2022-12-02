@@ -30,7 +30,7 @@
     let transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    let contentString = '【店舗名】<%= rodging.address %>';
+    let contentString = '【宿泊先名】<%= rodging.address %>';
     let infowindow = new google.maps.InfoWindow({
       content: contentString
     });
@@ -46,11 +46,10 @@
     });
   }
 
-  function SearchGo() {
-    let initPos = {lat: <%= rodging.latitude || 0 %> , lng: <%= rodging.longitude || 0 %> };
+  function SearchGo(){
+    let initPos = {lat: <%= rodging.latitude %> , lng: <%= rodging.longitude %> };
     let mapOptions = {
         center : initPos,
-        zoom: 0,
         mapTypeId : google.maps.MapTypeId.ROADMAP
     };
     // #map要素にMapクラスの新しいインスタンスを作成
@@ -67,34 +66,35 @@
   
   // 検索の結果を受け取る
   function result_search(results, status) {
-      let bounds = new google.maps.LatLngBounds();
-      for(let i = 0; i < results.length; i++){
-          createMarker({
-              position : results[i].geometry.location,
-              text : results[i].name,
-              map : myMap
-          });
-          bounds.extend(results[i].geometry.location);
-      }
-      myMap.fitBounds(bounds);
+    let bounds = new google.maps.LatLngBounds();
+    let contentButton = '<a class="btn btn-outline btn-success btn-sm" href="#" tabindex="0">保存</a>';
+    for(let i = 0; i < results.length; i++){
+      console.log(results[i].website)
+        createMarker({
+            position : results[i].geometry.location,
+            text : results[i].name,
+            web: results[i].website,
+            button : contentButton,
+            map : myMap
+        });
+        bounds.extend(results[i].geometry.location);
+    }
+    myMap.fitBounds(bounds);
   }
   
   // 該当する位置にマーカーを表示
   function createMarker(options) {
-      // マップ情報を保持しているmyMapオブジェクトを指定
-      options.map = myMap;
-      // Markcrクラスのオブジェクトmarkerを作成
-      let marker = new google.maps.Marker(options);
-      // 各施設の吹き出し(情報ウインドウ)に表示させる処理
-      let infoWnd = new google.maps.InfoWindow();
-      infoWnd.setContent(options.text);
-      // addListenerメソッドを使ってイベントリスナーを登録
-      google.maps.event.addListener(marker, 'click', function(){
-          infoWnd.open(myMap, marker);
-      });
-      return marker;
+    // マップ情報を保持しているmyMapオブジェクトを指定
+    options.map = myMap;
+    // Markcrクラスのオブジェクトmarkerを作成
+    let marker = new google.maps.Marker(options);
+    // 各施設の吹き出し(情報ウインドウ)に表示させる処理
+    let infoWnd = new google.maps.InfoWindow();
+    infoWnd.setContent(options.text + options.button + options.web);
+    // addListenerメソッドを使ってイベントリスナーを登録
+    google.maps.event.addListener(marker, 'click', function(){
+        infoWnd.open(myMap, marker);
+    });
+    return marker;
   }
-  
-  // ページ読み込み完了後、Googleマップを表示
-  google.maps.event.addDomListener(window, 'load', initialize);
 </script>
