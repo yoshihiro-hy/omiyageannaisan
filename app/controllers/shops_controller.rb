@@ -18,17 +18,6 @@ class ShopsController < ApplicationController
     end
   end
 
-  def edit; end
-
-  def update
-    if @shop.update(shop_params)
-      redirect_to rodging_shops_path, success: t('defaults.message.updated', item: Shop.model_name.human)
-    else
-      flash.now[:danger] = t('defaults.message.not_updated', item: Shop.model_name.human)
-      render :edit
-    end
-  end
-
   def destroy
     @shop.destroy!
     redirect_to rodging_shops_path, success: t('defaults.message.deleted', item: Shop.model_name.human)

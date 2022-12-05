@@ -4,18 +4,6 @@
     <div id='map' style="width:325px; height:300px" class="mt-3 mb-3"></div>
     <input type="text" placeholder="お菓子など" autofocus=true id="search" class="input w-full max-w-xs bg-white" />
     <button class='btn btn-active' onClick="SearchGo()">検索</button>
-    <div class="text-center">
-      <h1 class="font-bold text-4xl">↓</h1>
-    </div>
-    <%= form_with model: [rodging, shop], local: true do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div class="mb-2">
-        <%= f.text_field :address, placeholder: "店舗名を入力してください", class: 'w-full rounded border border-gray-200 p-2' %>
-      </div>
-      <div class="text-center">
-        <%= f.submit (t'defaults.keep'), class: 'btn btn-active' %>
-      </div>
-    <% end %>
   </div>
 </div>
 
