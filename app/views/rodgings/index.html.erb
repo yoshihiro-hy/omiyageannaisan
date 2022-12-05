@@ -1,6 +1,5 @@
 <% content_for(:title, t('.title')) %>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>"></script>
 <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-5 mb-5">
   <%= render @rodgings %>
 </div>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script>

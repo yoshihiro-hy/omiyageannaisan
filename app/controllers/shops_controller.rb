@@ -1,6 +1,7 @@
 class ShopsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_shop, only: %i[edit update destroy]
-  before_action :set_rodging, only: %i[create edit update index search]
+  before_action :set_rodging, only: %i[create edit update index search directions]
 
   def index
     @shops = @rodging.shops.all
@@ -17,17 +18,6 @@ class ShopsController < ApplicationController
     end
   end
 
-  def edit; end
-
-  def update
-    if @shop.update(shop_params)
-      redirect_to rodging_shops_path, success: t('defaults.message.updated', item: Shop.model_name.human)
-    else
-      flash.now[:danger] = t('defaults.message.not_updated', item: Shop.model_name.human)
-      render :edit
-    end
-  end
-
   def destroy
     @shop.destroy!
     redirect_to rodging_shops_path, success: t('defaults.message.deleted', item: Shop.model_name.human)
@@ -35,6 +25,11 @@ class ShopsController < ApplicationController
 
   def search
     @shop = Shop.new
+  end
+
+  def directions
+    @shops = @rodging.shops.all
+    gon.shops = @shops
   end
 
   private

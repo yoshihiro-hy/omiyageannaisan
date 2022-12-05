@@ -51,7 +51,7 @@ ja:
       title: '宿泊先編集'
   shops:
     search:
-      title: '周辺店舗検索'
+      title: '店舗周辺検索'
     index:
       title: '店舗一覧'
     edit:

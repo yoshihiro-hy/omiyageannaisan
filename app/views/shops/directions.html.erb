@@ -1,0 +1,46 @@
+<div class="map-directions">
+  <div id="map" style="width:325px; height:300px" class="mt-3 mb-3"></div>
+  <%= button_tag "ルート検索", id: "btn-search", class: "btn btn-primary", onclick: "search()" %>
+</div>
+
+<script>
+  function initMap(){
+    let points = gon.shops
+    let mapPosition = {lat: <%= @rodging.latitude %> , lng: <%= @rodging.longitude %> };
+    let map = new google.maps.Map(document.getElementById('map'), {
+        center : mapPosition,
+        zoom: 0,
+        mapTypeId : google.maps.MapTypeId.ROADMAP
+    });
+    let transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map); //ここまでOK
+
+    let bounds = new google.maps.LatLngBounds();
+    for (let i = 0; i < points.length; i++) {
+        createMarker({
+            position : points[i].geometry.location,
+            text : points[i].address,
+            map : map
+        });
+        bounds.extend(points[i].geometry.location);
+    }
+    map.fitBounds(bounds);
+  }
+
+  function createMarker(options) {
+    // マップ情報を保持しているmyMapオブジェクトを指定
+    options.map = map;
+    // Markcrクラスのオブジェクトmarkerを作成
+    let marker = new google.maps.Marker(options);
+    // 各施設の吹き出し(情報ウインドウ)に表示させる処理
+    let infoWnd = new google.maps.InfoWindow();
+    infoWnd.setContent(options.text);
+    // addListenerメソッドを使ってイベントリスナーを登録
+    google.maps.event.addListener(marker, 'click', function(){
+        infoWnd.open(map, marker);
+    });
+    return marker;
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script>

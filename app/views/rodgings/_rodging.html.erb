@@ -29,7 +29,7 @@
     let transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    let contentString = '【施設名】<%= rodging.address %>';
+    let contentString = '【宿泊先名】<%= rodging.address %>';
     let infowindow = new google.maps.InfoWindow({
       content: contentString
     });
@@ -44,4 +44,5 @@
       infowindow.open(map, marker);
     });
   }
+  initMap()
 </script>

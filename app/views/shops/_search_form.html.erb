@@ -4,18 +4,6 @@
     <div id='map' style="width:325px; height:300px" class="mt-3 mb-3"></div>
     <input type="text" placeholder="お菓子など" autofocus=true id="search" class="input w-full max-w-xs bg-white" />
     <button class='btn btn-active' onClick="SearchGo()">検索</button>
-    <div class="text-center">
-      <h1 class="font-bold text-4xl">↓</h1>
-    </div>
-    <%= form_with model: [rodging, shop], local: true do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div class="mb-2">
-        <%= f.text_field :address, placeholder: "店舗名を入力してください", class: 'w-full rounded border border-gray-200 p-2' %>
-      </div>
-      <div class="text-center">
-        <%= f.submit (t'defaults.keep'), class: 'btn btn-active' %>
-      </div>
-    <% end %>
   </div>
 </div>
 
@@ -30,7 +18,7 @@
     let transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    let contentString = '【店舗名】<%= rodging.address %>';
+    let contentString = '【宿泊先名】<%= rodging.address %>';
     let infowindow = new google.maps.InfoWindow({
       content: contentString
     });
@@ -46,11 +34,10 @@
     });
   }
 
-  function SearchGo() {
-    let initPos = {lat: <%= rodging.latitude || 0 %> , lng: <%= rodging.longitude || 0 %> };
+  function SearchGo(){
+    let initPos = {lat: <%= rodging.latitude %>, lng: <%= rodging.longitude %>};
     let mapOptions = {
         center : initPos,
-        zoom: 0,
         mapTypeId : google.maps.MapTypeId.ROADMAP
     };
     // #map要素にMapクラスの新しいインスタンスを作成
@@ -66,35 +53,49 @@
   }
   
   // 検索の結果を受け取る
-  function result_search(results, status) {
-      let bounds = new google.maps.LatLngBounds();
-      for(let i = 0; i < results.length; i++){
-          createMarker({
-              position : results[i].geometry.location,
-              text : results[i].name,
-              map : myMap
-          });
-          bounds.extend(results[i].geometry.location);
-      }
-      myMap.fitBounds(bounds);
+  function result_search(results) {
+    let bounds = new google.maps.LatLngBounds();
+    let contentButton = '<br><a class="btn btn-outline btn-success btn-sm mt-1" href="javascript:submitForm()" tabindex="0">保存</a>';
+    for(let i = 0; i < results.length; i++){
+      createMarker({ //createMarker関数を呼び出している
+        position : results[i].geometry.location,
+        text : `<a href="https://www.google.com/search?q=${results[i].name}" tabindex="0" id='shop_name' value='${results[i].name}'>${results[i].name}</a>`,
+        button : contentButton,
+        map : myMap
+      });
+      bounds.extend(results[i].geometry.location);
+    }
+    myMap.fitBounds(bounds);
   }
   
   // 該当する位置にマーカーを表示
   function createMarker(options) {
-      // マップ情報を保持しているmyMapオブジェクトを指定
-      options.map = myMap;
-      // Markcrクラスのオブジェクトmarkerを作成
-      let marker = new google.maps.Marker(options);
-      // 各施設の吹き出し(情報ウインドウ)に表示させる処理
-      let infoWnd = new google.maps.InfoWindow();
-      infoWnd.setContent(options.text);
-      // addListenerメソッドを使ってイベントリスナーを登録
-      google.maps.event.addListener(marker, 'click', function(){
-          infoWnd.open(myMap, marker);
-      });
-      return marker;
+    // マップ情報を保持しているmyMapオブジェクトを指定
+    options.map = myMap;
+    // Markcrクラスのオブジェクトmarkerを作成
+    let marker = new google.maps.Marker(options);
+    // 各施設の吹き出し(情報ウインドウ)に表示させる処理
+    let infoWnd = new google.maps.InfoWindow();
+    infoWnd.setContent(options.text + options.button);
+    // addListenerメソッドを使ってイベントリスナーを登録
+    google.maps.event.addListener(marker, 'click', function(){
+      infoWnd.open(myMap, marker);
+    });
+    return marker;
   }
-  
-  // ページ読み込み完了後、Googleマップを表示
-  google.maps.event.addDomListener(window, 'load', initialize);
+
+  function submitForm(){
+    let shop_name = document.getElementById('shop_name');
+    let value = shop_name.getAttribute('value');
+    let form = document.createElement('form');
+    document.body.appendChild(form);
+    let input = document.createElement('input');
+    input.setAttribute('type','hidden');
+    input.setAttribute('name','shop[address]');
+    input.setAttribute('value',value);
+    form.appendChild(input);
+    form.setAttribute('action',`/rodgings/<%= rodging.id %>/shops`);
+    form.setAttribute('method','post');
+    form.submit();
+  }
 </script>
