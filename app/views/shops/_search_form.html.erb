@@ -47,7 +47,7 @@
   }
 
   function SearchGo(){
-    let initPos = {lat: <%= rodging.latitude %> , lng: <%= rodging.longitude %> };
+    let initPos = {lat: <%= rodging.latitude %>, lng: <%= rodging.longitude %>};
     let mapOptions = {
         center : initPos,
         mapTypeId : google.maps.MapTypeId.ROADMAP
@@ -65,19 +65,17 @@
   }
   
   // 検索の結果を受け取る
-  function result_search(results, status) {
+  function result_search(results) {
     let bounds = new google.maps.LatLngBounds();
-    let contentButton = '<a class="btn btn-outline btn-success btn-sm" href="#" tabindex="0">保存</a>';
+    let contentButton = '<br><a class="btn btn-outline btn-success btn-sm mt-1" href="javascript:submitForm()" tabindex="0">保存</a>';
     for(let i = 0; i < results.length; i++){
-      console.log(results[i].website)
-        createMarker({
-            position : results[i].geometry.location,
-            text : results[i].name,
-            web: results[i].website,
-            button : contentButton,
-            map : myMap
-        });
-        bounds.extend(results[i].geometry.location);
+      createMarker({ //createMarker関数を呼び出している
+        position : results[i].geometry.location,
+        text : `<a href="https://www.google.com/search?q=${results[i].name}" tabindex="0" id='shop_name'>${results[i].name}</a>`,
+        button : contentButton,
+        map : myMap
+      });
+      bounds.extend(results[i].geometry.location);
     }
     myMap.fitBounds(bounds);
   }
@@ -90,11 +88,27 @@
     let marker = new google.maps.Marker(options);
     // 各施設の吹き出し(情報ウインドウ)に表示させる処理
     let infoWnd = new google.maps.InfoWindow();
-    infoWnd.setContent(options.text + options.button + options.web);
+    infoWnd.setContent(options.text + options.button);
     // addListenerメソッドを使ってイベントリスナーを登録
     google.maps.event.addListener(marker, 'click', function(){
-        infoWnd.open(myMap, marker);
+      infoWnd.open(myMap, marker);
     });
     return marker;
+  }
+
+  function submitForm(){
+    let shop_value = document.getElementById('shop_name');
+    let value = shop_value.getAttribute('value');
+    console.log(value)
+    let form = document.createElement('form');
+    document.body.appendChild(form);
+    let input = document.createElement('input');
+    input.setAttribute('type','hidden');
+    input.setAttribute('name','shop[address]');
+    input.setAttribute('value',value);
+    form.appendChild(input);
+    form.setAttribute('action',`/rodgings/<%= rodging.id %>/shops`);
+    form.setAttribute('method','post');
+    form.submit();
   }
 </script>

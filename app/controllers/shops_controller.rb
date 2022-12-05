@@ -1,4 +1,5 @@
 class ShopsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_shop, only: %i[edit update destroy]
   before_action :set_rodging, only: %i[create edit update index search directions]
 

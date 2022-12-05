@@ -19,7 +19,7 @@
     for (let i = 0; i < points.length; i++) {
         createMarker({
             position : points[i].geometry.location,
-            text : points[i].name,
+            text : points[i].address,
             map : map
         });
         bounds.extend(points[i].geometry.location);
@@ -43,4 +43,4 @@
   }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script>
