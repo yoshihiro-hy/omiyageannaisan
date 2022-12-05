@@ -71,7 +71,7 @@
     for(let i = 0; i < results.length; i++){
       createMarker({ //createMarker関数を呼び出している
         position : results[i].geometry.location,
-        text : `<a href="https://www.google.com/search?q=${results[i].name}" tabindex="0" id='shop_name'>${results[i].name}</a>`,
+        text : `<a href="https://www.google.com/search?q=${results[i].name}" tabindex="0" id='shop_name' value='${results[i].name}'>${results[i].name}</a>`,
         button : contentButton,
         map : myMap
       });
@@ -97,9 +97,8 @@
   }
 
   function submitForm(){
-    let shop_value = document.getElementById('shop_name');
-    let value = shop_value.getAttribute('value');
-    console.log(value)
+    let shop_name = document.getElementById('shop_name');
+    let value = shop_name.getAttribute('value');
     let form = document.createElement('form');
     document.body.appendChild(form);
     let input = document.createElement('input');
