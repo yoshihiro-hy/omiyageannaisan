@@ -37,8 +37,8 @@
   function SearchGo(){
     let initPos = {lat: <%= rodging.latitude %>, lng: <%= rodging.longitude %>};
     let mapOptions = {
-        center : initPos,
-        mapTypeId : google.maps.MapTypeId.ROADMAP
+        center: initPos,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     // #map要素にMapクラスの新しいインスタンスを作成
     myMap = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -58,10 +58,10 @@
     let contentButton = '<br><a class="btn btn-outline btn-success btn-sm mt-1" href="javascript:submitForm()" tabindex="0">保存</a>';
     for(let i = 0; i < results.length; i++){
       createMarker({ //createMarker関数を呼び出している
-        position : results[i].geometry.location,
-        text : `<a href="https://www.google.com/search?q=${results[i].name}" tabindex="0" id='shop_name' value='${results[i].name}'>${results[i].name}</a>`,
-        button : contentButton,
-        map : myMap
+        position: results[i].geometry.location,
+        text: `<a href="https://www.google.com/search?q=${results[i].name}" tabindex="0" id='shop_name' value='${results[i].name}'>${results[i].name}</a>`,
+        button: contentButton,
+        map: myMap
       });
       bounds.extend(results[i].geometry.location);
     }

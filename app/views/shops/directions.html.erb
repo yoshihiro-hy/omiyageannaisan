@@ -1,35 +1,33 @@
 <div class="map-directions">
-  <div id="map" style="width:325px; height:300px" class="mt-3 mb-3"></div>
-  <%= button_tag "ルート検索", id: "btn-search", class: "btn btn-primary", onclick: "search()" %>
+  <div id="map" style="width:370px; height:400px" class="mt-3 mb-3"></div>
+  <%= button_tag "現在位置からルート検索", id: "btn-search", class: "btn btn-primary mb-3", onclick: "search()" %>
 </div>
 
 <script>
+  let shops = gon.shops;
   function initMap(){
-    let points = gon.shops
-    let mapPosition = {lat: <%= @rodging.latitude %> , lng: <%= @rodging.longitude %> };
-    let map = new google.maps.Map(document.getElementById('map'), {
-        center : mapPosition,
-        zoom: 0,
-        mapTypeId : google.maps.MapTypeId.ROADMAP
-    });
-    let transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map); //ここまでOK
-
+    let initPos = {lat: <%= @rodging.latitude %>, lng: <%= @rodging.longitude %>};
+    let mapOptions = {
+      center: initPos,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    // #map要素にMapクラスの新しいインスタンスを作成
+    myMap = new google.maps.Map(document.getElementById("map"), mapOptions);
     let bounds = new google.maps.LatLngBounds();
-    for (let i = 0; i < points.length; i++) {
-        createMarker({
-            position : points[i].geometry.location,
-            text : points[i].address,
-            map : map
-        });
-        bounds.extend(points[i].geometry.location);
+    for(let i = 0; i < shops.length; i++){
+      createMarker({ //createMarker関数を呼び出している
+        position: new google.maps.LatLng(shops[i].latitude, shops[i].longitude),
+        text: `<a href="https://www.google.com/search?q=${shops[i].address}" tabindex="0">${shops[i].address}</a>`,
+        map: myMap
+      });
+      bounds.extend(new google.maps.LatLng(shops[i].latitude, shops[i].longitude));
     }
-    map.fitBounds(bounds);
+    myMap.fitBounds(bounds);
   }
 
   function createMarker(options) {
     // マップ情報を保持しているmyMapオブジェクトを指定
-    options.map = map;
+    options.map = myMap;
     // Markcrクラスのオブジェクトmarkerを作成
     let marker = new google.maps.Marker(options);
     // 各施設の吹き出し(情報ウインドウ)に表示させる処理
@@ -37,9 +35,62 @@
     infoWnd.setContent(options.text);
     // addListenerメソッドを使ってイベントリスナーを登録
     google.maps.event.addListener(marker, 'click', function(){
-        infoWnd.open(map, marker);
+      infoWnd.open(myMap, marker);
     });
     return marker;
+  }
+
+  // 複数地点のルートを検索する
+  function search() {
+    let initPos = {lat: <%= @rodging.latitude %>, lng: <%= @rodging.longitude %>};
+    let mapOptions = {
+      center: initPos,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    navigator.geolocation.watchPosition(success);
+    function success(position) {
+      let currentPos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude)
+        // #map要素にMapクラスの新しいインスタンスを作成
+      myMap = new google.maps.Map(document.getElementById("map"), mapOptions);
+      let directionsService = new google.maps.DirectionsService();
+      let directionsDisplay = new google.maps.DirectionsRenderer;
+
+      // 2地点以上のとき
+      if (shops.length >= 1){
+        let origin = currentPos; // 開始地点
+        let destination = new google.maps.LatLng(<%= @rodging.latitude %>, <%= @rodging.longitude %>); // 終了地点
+        let waypoints = []; // 経由地点
+        // origin, destination, waypointsを設定する
+        let bounds = new google.maps.LatLngBounds();
+        for (let i = 0; i < shops.length; i++) {
+          createMarker({ //createMarker関数を呼び出している
+            position: new google.maps.LatLng(shops[i].latitude, shops[i].longitude),
+            text: `<a href="https://www.google.com/search?q=${shops[i].address}" tabindex="0">${shops[i].address}</a>`,
+            map: myMap
+          });
+          bounds.extend(new google.maps.LatLng(shops[i].latitude, shops[i].longitude));
+          shops[i] = new google.maps.LatLng(shops[i].latitude, shops[i].longitude);
+          waypoints.push({ location: shops[i], stopover: true });
+        }
+        myMap.fitBounds(bounds);
+          // リクエスト作成
+        let request = {
+          origin:      origin,
+          destination: destination,
+          waypoints: waypoints,
+          travelMode:  google.maps.TravelMode.WALKING
+        };
+        // ルートサービスのリクエスト
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            // 結果を表示する
+            directionsDisplay.setMap(myMap);
+            directionsDisplay.setDirections(response);
+          }
+        });
+      }
+    }
   }
 </script>
 
