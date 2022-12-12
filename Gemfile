@@ -92,6 +92,8 @@ group :development do
   gem 'better_errors'
   # ブラウザ上でirbを使用できるようにする
   gem 'binding_of_caller'
+  # 開発環境のメールを確認
+  gem 'letter_opener_web'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

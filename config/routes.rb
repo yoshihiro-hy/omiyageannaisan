@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'user_sessions#destroy'
 
   resources :users, only: %i[new create]
+  resources :password_resets, only: %i[new create edit update]
   resource :profile, only: %i[show edit update]
   resources :rodgings, only: %i[index new create edit update destroy] do
     resources :shops, only: %i[index create destroy] do
@@ -14,4 +15,5 @@ Rails.application.routes.draw do
       end
     end
   end
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
