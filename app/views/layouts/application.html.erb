@@ -12,15 +12,17 @@
   </head>
 
   <body>
-    <% if logged_in? %>
-      <%= render 'shared/header' %>
-    <% else %>
-      <%= render 'shared/before_login_header' %>
-    <% end %>
-    <%= render 'shared/flash_message' %>
-    <div class="flex justify-center bg-neutral-focus">
-      <%= yield %>
+    <div class='container flex flex-col min-h-screen'>
+      <% if logged_in? %>
+        <%= render 'shared/header' %>
+      <% else %>
+        <%= render 'shared/before_login_header' %>
+      <% end %>
+      <%= render 'shared/flash_message' %>
+      <div class="flex justify-center bg-neutral-focus">
+        <%= yield %>
+      </div>
+      <%= render 'shared/footer' %>
     </div>
-    <%= render 'shared/footer' %>
   </body>
 </html>
