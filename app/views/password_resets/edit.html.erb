@@ -3,27 +3,30 @@
   <div class="card w-96 bg-base-100 shadow-xl mt-3 mb-3">
     <div class="card-body">
       <h1 class="flex justify-center font-bold mt-5"><%= t '.title' %></h1>
-      <%= form_with url: login_path, local: true do |f| %>
+      <%= form_with model: @user, url: password_reset_path(@token), local: true do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
         <div class="mb-2">
           <div class="pt-2 pb-1">
-            <%= f.label :email, User.human_attribute_name(:email), class: 'block mb-1' %>
+           <%= f.label :email, User.human_attribute_name(:email) %>
           </div>
-          <%= f.email_field :email, class: 'w-full rounded border border-gray-200 p-2' %>
+          <%= @user.email %>
         </div>
         <div class="mb-2">
           <div class="pt-2 pb-1">
-            <%= f.label :password, User.human_attribute_name(:password), class: 'block mb-1' %>
+           <%= f.label :password %>
           </div>
           <%= f.password_field :password, class: 'w-full rounded border border-gray-200 p-2' %>
         </div>
+        <div class="mb-2">
+          <div class="pt-2 pb-1">
+           <%= f.label :password_confirmation %>
+          </div>
+          <%= f.password_field :password_confirmation, class: 'w-full rounded border border-gray-200 p-2' %>
+        </div>
         <div class="my-8 text-center">
-          <%= f.submit t('defaults.login'), class: 'btn btn-active' %>
+          <%= f.submit t('defaults.change'), class: 'btn btn-active' %>
         </div>
       <% end %>
-      <div class="text-center">
-        <%= link_to t('.to_signup_page'), new_user_path %>
-        <p class='mt-3'><%= link_to t('.password_foreget'), new_password_reset_path %></p>
-      </div>
     </div>
   </div>
 </div>

@@ -9,6 +9,7 @@ ja:
     edit: '編集'
     change: '変更'
     delete: '削除'
+    send: '送信'
     login: 'ログイン'
     logout: 'ログアウト'
     alignment_line: 'LINE連携'
@@ -32,11 +33,22 @@ ja:
     new:
       title: 'ログイン'
       to_signup_page: '新規登録ページへ'
+      password_foreget: 'パスワードを忘れた方はこちら'
     create:
       success: 'ログインが完了しました'
       fail: 'ログインに失敗しました'
     destroy:
       success: 'ログアウトが完了しました'
+  password_resets:
+    new:
+      title: 'パスワード変更受付'
+    create:
+      success: 'パスワードリセット用のメールを送信しました'
+    edit:
+      title: 'パスワード変更'
+    update:
+      success: 'パスワードを変更しました'
+      fail: 'パスワードの変更に失敗しました'
   profiles:
     show:
       title: 'プロフィール'
