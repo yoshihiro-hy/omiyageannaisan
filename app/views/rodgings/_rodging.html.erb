@@ -1,6 +1,6 @@
 <div class="card w-96 bg-base-100 font-bold shadow-xl">
   <div class="card-body">
-    <%= link_to rodging.address, rodging_shops_path(rodging.id), class: "text-xl text-center" %>
+    <%= link_to rodging.address, rodging_shops_path(rodging.id), class: "text-xl text-center btn btn-outline" %>
     <div id='map-<%= rodging.id %>' style="width:325px; height:300px" class="mt-3 mb-3"></div>
     <div><%= Rodging.human_attribute_name(:start_time)%></div>
     <div class='flex justify-start'>
