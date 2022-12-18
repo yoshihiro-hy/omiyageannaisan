@@ -4,11 +4,7 @@
   <% if @rodgings.present? %>
     <%= render @rodgings %>
   <% else %>
-    <div class="card w-80 bg-base-100 shadow-xl my-10">
-      <div class="card-body items-center text-center my-48">
-        <h1>宿泊先が登録されていません</h1>
-      </div>
-    </div>
+    <%= link_to '宿泊先を登録してみよう！', new_rodging_path, class:"btn btn-lg w-80 font-bold shadow-xl h-[234px] my-24" %>
   <% end %>
 </div>
  
