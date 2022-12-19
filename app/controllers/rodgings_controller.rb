@@ -2,7 +2,7 @@ class RodgingsController < ApplicationController
   before_action :set_rodging, only: %i[edit update destroy]
 
   def index
-    @rodgings = current_user.rodgings.all
+    @rodgings = current_user.rodgings.all.order('start_time ASC')
   end
 
   def new
