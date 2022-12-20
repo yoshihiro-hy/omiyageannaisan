@@ -57,6 +57,8 @@ gem 'google_places'
 gem "geocoder"
 # Railsで定義した変数をJavaScriptで使用できるようにする
 gem 'gon'
+# LINE通知用
+gem 'line-bot-api'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
