@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   get 'logout', to: 'user_sessions#destroy'
+  get 'line_login/login', to: 'line_login#login'
+  get 'line_login/callback', to: 'line_login#callback'
 
   resources :users, only: %i[new create]
   resources :password_resets, only: %i[new create edit update]
