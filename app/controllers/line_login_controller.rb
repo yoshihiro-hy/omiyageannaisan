@@ -11,7 +11,7 @@ class LineLoginController < ApplicationController
     client_id = ENV['LINE_KEY']
     redirect_uri = CGI.escape(line_login_callback_url)
     state = session[:state]
-    scope = 'profile%openid'
+    scope = 'profile%20openid'
 
     authorization_url = "#{base_authorization_url}?response_type=#{response_type}&client_id=#{client_id}&redirect_uri=#{redirect_uri}&state=#{state}&scope=#{scope}"
     redirect_to authorization_url, allow_other_host: true
@@ -22,10 +22,10 @@ class LineLoginController < ApplicationController
       line_user_id = get_line_user_id(params[:code])
       user = User.find_or_initialize_by(line_user_id: line_user_id)
       if user.save
-        session[:user_id] = user.id
-        redirect_to profile_path, notice: 'ログインしました'
+        session[:line_user_id] = user.id
+        redirect_to profile_path, success: t('.success')
       else
-        redirect_to profile_path, notice: 'ログインに失敗しました'
+        redirect_to profile_path, danger: t('.fail')
       end
     else
       redirect_to profile_path, notice: '不正なアクセスです'
@@ -57,9 +57,9 @@ class LineLoginController < ApplicationController
     end
   end
 
-  def get_line_user_id_token
+  def get_line_user_id_token(code)
     url = 'https://api.line.me/oauth2/v2.1/token'
-    redirect_uri = line_login_api_callback_url
+    redirect_uri = line_login_callback_url
 
     options = {
       headers: {

@@ -68,3 +68,7 @@ ja:
       title: '店舗一覧'
     edit:
       title: '店舗変更'
+  line_login:
+    callback:
+      success: 'ログインが完了しました'
+      fail: 'ログインに失敗しました'
