@@ -1,4 +1,5 @@
 class LineLoginController < ApplicationController
+  before_action :set_user, only: %i[callback]
   require 'json'
   require 'typhoeus'
   require 'securerandom'
@@ -21,14 +22,14 @@ class LineLoginController < ApplicationController
     if params[:state] == session[:state]
       line_user_id = get_line_user_id(params[:code])
       user = User.find_or_initialize_by(line_user_id: line_user_id)
-      if user.save
-        session[:line_user_id] = user.id
+      @user.line_user_id = user.line_user_id
+      if @user.save
         redirect_to profile_path, success: t('.success')
       else
         redirect_to profile_path, danger: t('.fail')
       end
     else
-      redirect_to profile_path, notice: '不正なアクセスです'
+      redirect_to profile_path, warning: t('.unauthorized_access')
     end
   end
 
@@ -38,14 +39,14 @@ class LineLoginController < ApplicationController
     line_user_id_token = get_line_user_id_token(code)
     if line_user_id_token.present?
       url = 'https://api.line.me/oauth2/v2.1/verify'
-      option = {
+      options = {
         body: {
           id_token: line_user_id_token,
           client_id: ENV['LINE_KEY']
         }
       }
 
-      response = Typhoeus::Request.post(url, option)
+      response = Typhoeus::Request.post(url, options)
 
       if response.code == 200
         JSON.parse(response.body)['sub']
@@ -80,5 +81,9 @@ class LineLoginController < ApplicationController
     else
       nil
     end
+  end
+
+  def set_user
+    @user = User.find(current_user.id)
   end
 end

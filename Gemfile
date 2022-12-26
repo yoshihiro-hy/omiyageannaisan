@@ -99,6 +99,8 @@ group :development do
   # 開発環境のメールを確認
   gem 'letter_opener_web'
 
+  gem 'pry-rails'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

@@ -70,5 +70,6 @@ ja:
       title: '店舗変更'
   line_login:
     callback:
-      success: 'ログインが完了しました'
-      fail: 'ログインに失敗しました'
+      success: 'LINEログインが完了しました'
+      fail: 'LINEログインに失敗しました'
+      unauthorized_access: '不正なアクセスです'

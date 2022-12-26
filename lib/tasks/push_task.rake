@@ -12,7 +12,7 @@ namespace :push_task do
     limit_shopping_day.each do |t|
       message = {
           type: 'text',
-          text: "「今日はお土産の購入日です。#{t.address}」周辺で"
+          text: "今日はお土産購入日です。#{t.address}周辺でお買い物をしましょう！"
       }
       response = client.push_message(t.user_uid, message)
       p response
