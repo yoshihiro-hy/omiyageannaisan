@@ -24,7 +24,7 @@ class LineLoginController < ApplicationController
       user = User.find_or_initialize_by(line_user_id: line_user_id)
       @user.line_user_id = user.line_user_id
       if @user.save
-        redirect_to profile_path, success: t('.success')
+        redirect_to line_login_add_friend_path, success: t('.success')
       else
         redirect_to profile_path, danger: t('.fail')
       end
@@ -32,6 +32,8 @@ class LineLoginController < ApplicationController
       redirect_to profile_path, warning: t('.unauthorized_access')
     end
   end
+
+  def add_friend; end
 
   private
 

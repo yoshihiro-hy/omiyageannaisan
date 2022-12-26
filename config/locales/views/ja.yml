@@ -73,3 +73,5 @@ ja:
       success: 'LINEログインが完了しました'
       fail: 'LINEログインに失敗しました'
       unauthorized_access: '不正なアクセスです'
+    add_friend:
+      title: '友達追加'
