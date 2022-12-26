@@ -11,6 +11,7 @@ class RodgingsController < ApplicationController
 
   def create
     @rodging = current_user.rodgings.build(rodging_params)
+    @rodging.user_uid = current_user.line_user_id
     if @rodging.save
       redirect_to search_rodging_shops_path(@rodging), success: t('defaults.message.created', item: Rodging.model_name.human)
     else
