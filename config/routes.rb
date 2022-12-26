@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'user_sessions#destroy'
   get 'line_login/login', to: 'line_login#login'
   get 'line_login/callback', to: 'line_login#callback'
+  get 'line_login/add_friend', to: 'line_login#add_friend'
 
   resources :users, only: %i[new create]
   resources :password_resets, only: %i[new create edit update]
