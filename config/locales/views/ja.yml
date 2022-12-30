@@ -13,6 +13,7 @@ ja:
     login: 'ログイン'
     logout: 'ログアウト'
     alignment_line: 'LINE連携'
+    line_user_linked: 'LINE連携済み'
     message:
       require_login: 'ログインしてください'
       updated: '%{item}を更新しました'
