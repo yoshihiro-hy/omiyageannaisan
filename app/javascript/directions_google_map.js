@@ -1,6 +1,5 @@
 let shops = gon.shops;
 let rodging = gon.rodging;
-console.log(rodging)
 function initMap(){
   let initPos = {lat: rodging.latitude, lng: rodging.longitude};
   let mapOptions = {
