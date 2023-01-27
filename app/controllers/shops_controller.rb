@@ -30,6 +30,7 @@ class ShopsController < ApplicationController
   def directions
     @shops = @rodging.shops.all
     gon.shops = @shops
+    gon.rodging = @rodging
   end
 
   private
