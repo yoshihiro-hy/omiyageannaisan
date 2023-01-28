@@ -1,43 +1,40 @@
-<div class="flex flex-col items-center">
-  <div class="card w-80 h-auto bg-slate-200 shadow-xl my-5">
-    <div class="card-body">
-      <div class='card-title mb-3 w-full'>ステップ1</div>
-      <div class="flex flex-wrap">
+<div class="container mx-auto px-4">  
+  <div class="flex flex-col items-center">
+    <div class="w-full h-auto my-5">
+      <div class="flex">
         <div class='w-1/2'>
-          <div class='text-sm leading-loose'>
-            <p>宿泊先名</p>
-            <p>旅行日時</p>
+          <div class='leading-loose lg:text-2xl md:text-xl text-white'>
+            <h1>ステップ1</h1>
+            <h2>宿泊先名</p>
+            <h2>旅行日時</p>
             <p>お土産購入日</p>
             <p>この3つを登録しましょう！</p>
           </div>
         </div>
         <div class='w-1/2'>
-          <%= image_tag 'cac11d9eb9235f0138f97511201a5694.png', class: 'ml-3'%>
+          <%= image_tag 'cac11d9eb9235f0138f97511201a5694.png', class: 'max-h-96 w-72' %>
         </div>
       </div>
     </div>
-  </div>
-  <div class="card w-80 h-auto bg-slate-200 shadow-xl my-5">
-    <div class="card-body">
-      <div class='card-title mb-3 w-full'>ステップ2</div>
-      <div class="flex flex-wrap">
+    <div class="w-full h-auto my-5">
+      <div class="flex">
         <div class='w-1/2'>
-          <div class='text-sm leading-loose'>
-            <p>購入したいお土産を検索し、保存ボタンクリックすることで保存します。</p>
+          <div class='leading-loose lg:text-2xl md:text-2xl text-white'>
+            <p>ステップ2</p>
+            <p>購入したいお土産を検索し、</p>
+            <p>保存ボタンクリックすることで保存します。</p>
           </div>
         </div>
         <div class='w-1/2'>   
-          <%= image_tag '74cad64841246c31ccc2219892fe31c3.png', class: 'ml-3'%> 
+          <%= image_tag '74cad64841246c31ccc2219892fe31c3.png', class: 'max-h-96 w-72' %> 
         </div>
       </div>
     </div>
-  </div>
-  <div class="card w-80 h-auto bg-slate-200 shadow-xl my-5">
-    <div class="card-body">
-      <div class='card-title mb-3 w-full'>ステップ3</div>
-      <div class="flex flex-wrap">
+    <div class="w-full h-auto my-5">
+      <div class="flex">
         <div class='w-1/2'>
-          <div class='text-sm leading-loose'>
+          <div class='leading-loose lg:text-2xl md:text-2xl text-white'>
+            <p>ステップ3</p>
             <p>店舗を追加したい</p>
             <p class='mb-5'>→「店舗を追加する」をクリック</p>
             <p>保存した店舗のルート検索をしたい</p>
@@ -45,41 +42,47 @@
           </div>
         </div>
         <div class='w-1/2'>
-          <%= image_tag 'f60c5525d5ea1106922bf8cd859cb355.png', class: 'ml-3'%>
+          <%= image_tag 'f60c5525d5ea1106922bf8cd859cb355.png', class: 'max-h-96  w-72'%>
         </div>
       </div>
     </div>
-  </div>
-  <div class="card w-80 h-auto bg-slate-200 shadow-xl my-5">
-    <div class="card-body">
-      <div class='card-title mb-3 w-full'>ステップ4</div>
-      <div class="flex flex-wrap">
+    <div class="w-full h-auto my-5">
+      <div class="flex">
         <div class='w-1/2'>
-          <div class='text-sm leading-loose'>
+          <div class='leading-loose lg:text-2xl md:text-2xl text-white'>
+            <p>ステップ4</p>
             <p>「現在位置からルート検索」ボタンをクリックすることで現在位置から保存した店舗を経由して登録した宿泊施設までのルートをマップに表示します。</p>
           </div>
         </div>
         <div class='w-1/2'>
-          <%= image_tag '8f60ea4ca88bc8344b7abdba215e1bce.png', class: 'ml-3'%>   
+          <%= image_tag '8f60ea4ca88bc8344b7abdba215e1bce.png', class: 'max-h-96  w-72'%>   
         </div>
       </div>
     </div>
-  </div>
-  <div class="card w-80 h-auto bg-slate-200 shadow-xl my-5">
-    <div class="card-body">
-      <div class='card-title mb-3 w-full'>ステップ5</div>
-      <div class="flex flex-wrap">
+    <div class="w-full h-auto my-5">
+      <div class="flex">
         <div class='w-1/2'>
-          <div class='text-sm leading-loose'>
+          <div class='leading-loose lg:text-2xl md:text-2xl text-white'>
+            <p class='mt-5'>ステップ5</p>
             <h1>1.LINEログイン</h1>
             <p class='mb-5'>プロフィール画面のLINE連携ボタンを押してLINEでログインしよう！</p>
+          </div>
+        </div>
+        <div class='w-1/2'>
+          <%= image_tag 'FE24178A-CCD8-49AD-9E88-AAD001EBF04E.png', class: 'max-h-96 w-72'%>
+        </div>
+      </div>
+    </div>
+    <div class="w-full h-auto my-5">
+      <div class="flex">
+        <div class='w-1/2'>
+          <div class='leading-loose lg:text-2xl md:text-2xl text-white'>
             <h1>2.LINE通知</h1>
             <p>LINEと連携しておくことで登録しておいた宿泊先のお土産購入日の朝7時にLINEで通知されます！</p>
           </div>
         </div>
         <div class='w-1/2'>
-          <%= image_tag 'FE24178A-CCD8-49AD-9E88-AAD001EBF04E.png', class: 'ml-3'%>
-          <%= image_tag 'C6C66D19-0010-4247-AEA3-39E3AC16C07C.png', class: 'ml-3'%>
+          <%= image_tag 'C6C66D19-0010-4247-AEA3-39E3AC16C07C.png', class: 'max-h-96 w-72'%>
         </div>
       </div>
     </div>
