@@ -11,9 +11,12 @@
     <div><%= Rodging.human_attribute_name(:shopping_day)%></div>
     <div><%= rodging.shopping_day.strftime('%Y年%m/%d') %></div>
     <div class="card-actions justify-center">
-      <%= link_to (t'defaults.change'), edit_rodging_path(rodging), class:"btn btn-secondary"  %>
-      <%= button_to (t'defaults.delete'), rodging_path(rodging), method: :delete, class:"btn btn-primary" %>
+      <%= link_to (t'defaults.change'), edit_rodging_path(rodging), class:"btn btn-outline btn-secondary"  %>
+      <%= button_to (t'defaults.delete'), rodging_path(rodging), method: :delete, class:"btn btn-outline btn-primary" %>
     </div>
+    <div class='card-actions justify-center'>
+      <%= link_to '周辺店舗検索', search_rodging_shops_path(rodging), class: 'btn btn-outline w-32'%>
+    </div>  
   </div>
 </div>
 
