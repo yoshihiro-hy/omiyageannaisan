@@ -1,3 +1,5 @@
+## サービスURL
+https://www.omiyageannaisan.com
 ## サービス概要
 予定旅行先の宿泊先周辺のお土産を検索- 前日- 当日に通知するサービスです
 ## ターゲットユーザー
@@ -47,4 +49,4 @@ https://drive.google.com/file/d/13aM6ZJG5g1nnQnFzAYWLgoL8WJNoTlWw/view?usp=shari
 - README,ER図作成,画面遷移図作成,技術調査: 11/8〆切
 - メイン機能実装: 11/9 ~ 12/9
 - β版をRUNTEQ内リリース（MVP）：12/9〆切
-- 本番リリース: 12/23
+- 本番リリース: 1/4
