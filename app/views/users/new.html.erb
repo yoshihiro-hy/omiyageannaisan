@@ -29,11 +29,11 @@
           </div>
           <%= f.password_field :password_confirmation, class: 'w-full rounded border border-gray-200 p-2' %>
         </div>
-        <div class="my-8 md:text-center">
+        <div class="my-8 text-center">
           <%= f.submit t('defaults.register'), class: 'btn btn-active' %>
         </div>
       <% end %>
-      <div class="mt-6 text-center hover:underline hover:text-gray-600 hover:decoration-gray-600">
+      <div class="mt-3 text-center hover:underline hover:text-gray-600 hover:decoration-gray-600">
         <%= link_to t('.to_login_page'), login_path %>
       </div>
     </div>
