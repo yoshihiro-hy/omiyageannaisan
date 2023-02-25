@@ -46,7 +46,6 @@ https://www.figma.com/file/81GGKNl6yoC4xvsIqxWCv7/%E3%81%8A%E5%9C%9F%E7%94%A3%E6
 ## ER図
 https://drive.google.com/file/d/13aM6ZJG5g1nnQnFzAYWLgoL8WJNoTlWw/view?usp=sharing
 ## スケジュール
-- README,ER図作成,画面遷移図作成,技術調査: 11/8〆切
-- メイン機能実装: 11/9 ~ 12/9
-- β版をRUNTEQ内リリース（MVP）：12/9〆切
+- README,ER図作成,画面遷移図作成,技術調査: 11/8まで
+- β版をRUNTEQ内リリース（MVP）：12/16
 - 本番リリース: 1/4
